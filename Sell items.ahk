@@ -24,53 +24,27 @@ global confirmY := 929
 
 global delay := 300
 
-^1::
-    sell(456)
+^!1::
+    sell(500)
 return
 
-
-^2::
-    sell(987)
+^!2::
+    sell(1000)
 return
 
+^!3::
+    sell(2000)
+return
 
-
-
-; TODO:
-; click item to sell needs to be Y relative as to sell items that are relative to the mouse
-
-test(value)
-{
-    BlockInput On
-    ; Get the current mouse position
-    MouseGetPos, OriginalMouseX, OriginalMouseY
-
-    ; click item to sell 
-    Click, %itemX% + , %OriginalMouseY%
-    sleep, delay
-    Click
-    sleep, delay
-
-    Send, {Ctrl Down}
-    sleep, delay
-    Send, a
-    sleep, delay
-    Send, {Ctrl Up}
-    sleep, delay
-
-    ; Return the mouse to its original position
-    MouseMove, %OriginalMouseX%, %OriginalMouseY%, 0
-    BlockInput Off
-}
 
 
 sell(value)
 {
-    BlockInput, MouseMove On
+    BlockInput, On
     ; Get the current mouse position
     MouseGetPos, OriginalMouseX, OriginalMouseY
 
-    Click, %itemX%, %itemY%
+    Click, %itemX%, %OriginalMouseY%
     sleep, delay
 
     Click, %sellX%, %sellY%
@@ -96,16 +70,16 @@ sell(value)
     sleep, delay * 2
     MouseMove, %oneDayX%, %oneDayY%
     sleep, delay
-    MouseMove, -10, 10, 25, R
-    Sleep, delay
-    MouseMove, 10, -10, 25, R
-    Sleep, delay
+    MouseMove, -3, 3, 25, R
+    Sleep, delay/2
+    MouseMove, 3, -3, 25, R
+    Sleep, delay/2
     Click
-    Sleep, delay
+    Sleep, delay * 2
 
-
-    ;Click, %confirmX%, %confirmY%
-    ;sleep, delay
+    MouseMove, %confirmX%, %confirmY%
+    sleep, delay
+    Click
 
     ; Return the mouse to its original position
     MouseMove, %OriginalMouseX%, %OriginalMouseY%, 0

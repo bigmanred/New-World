@@ -52,11 +52,10 @@ sell(value)
     clickM(unitPriceX, unitPriceY, delay)
 
     Send, {Ctrl Down}
-    sleep, delay
+    sleep, delay/2
     Send, a
-    sleep, delay
+    sleep, delay/2
     Send, {Ctrl Up}
-    sleep, delay
 
     Send {Raw}%value%
     sleep, delay
@@ -66,11 +65,11 @@ sell(value)
     MouseMove, %oneDayX%, %oneDayY%
     sleep, delay
     MouseMove, -3, 3, 25, R
-    Sleep, delay/2
+    Sleep, delay/3
     MouseMove, 3, -3, 25, R
-    Sleep, delay/2
+    Sleep, delay/3
     Click
-    Sleep, delay * 2
+    Sleep, delay
 
     clickM(confirmX, confirmY, 0)
 

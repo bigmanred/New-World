@@ -36,6 +36,7 @@ return
     sell(2000)
 return
 
+*F6::ExitApp
 
 
 sell(value)

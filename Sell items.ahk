@@ -29,7 +29,7 @@ global delay := 300
 return
 
 ^2::
-    sell(100)
+    sell(1000)
 return
 
 ^3::

@@ -24,15 +24,15 @@ global confirmY := 929
 
 global delay := 300
 
-^!1::
+^1::
     sell(500)
 return
 
-^!2::
+^2::
     sell(1000)
 return
 
-^!3::
+^3::
     sell(2000)
 return
 
@@ -44,16 +44,12 @@ sell(value)
     ; Get the current mouse position
     MouseGetPos, OriginalMouseX, OriginalMouseY
 
-    Click, %itemX%, %OriginalMouseY%
-    sleep, delay
+    clickM(itemX, OriginalMouseY, delay)
 
-    Click, %sellX%, %sellY%
-    sleep, delay
+    clickM(sellX, sellY, delay)
 
-    Click, %unitPriceX%, %unitPriceY%
-    sleep, delay
-    Click
-    sleep, delay
+    clickM(unitPriceX, unitPriceY, delay)
+
     Send, {Ctrl Down}
     sleep, delay
     Send, a
@@ -64,10 +60,8 @@ sell(value)
     Send {Raw}%value%
     sleep, delay
 
-    MouseMove, %listDurX%, %listDurY%
-    sleep, delay
-    Click
-    sleep, delay * 2
+    clickM(listDurX, listDurY, delay)
+
     MouseMove, %oneDayX%, %oneDayY%
     sleep, delay
     MouseMove, -3, 3, 25, R
@@ -77,11 +71,17 @@ sell(value)
     Click
     Sleep, delay * 2
 
-    MouseMove, %confirmX%, %confirmY%
-    sleep, delay
-    Click
+    clickM(confirmX, confirmY, 0)
 
     ; Return the mouse to its original position
     MouseMove, %OriginalMouseX%, %OriginalMouseY%, 0
     BlockInput, off
+}
+
+clickM(x, y, delay)
+{
+    MouseMove %x%, %y%
+    sleep, 100
+    Click
+    sleep, %delay%
 }

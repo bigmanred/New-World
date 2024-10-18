@@ -29,7 +29,7 @@ global delay := 300
 return
 
 ^2::
-    sell(1000)
+    sell(100)
 return
 
 ^3::
@@ -64,10 +64,7 @@ sell(value)
 
     MouseMove, %oneDayX%, %oneDayY%
     sleep, delay
-    MouseMove, -3, 3, 25, R
-    Sleep, delay/3
-    MouseMove, 3, -3, 25, R
-    Sleep, delay/3
+    wiggle(3, delay/3)
     Click
     Sleep, delay
 
@@ -75,8 +72,12 @@ sell(value)
 
     ; Return the mouse to its original position
     MouseMove, %OriginalMouseX%, %OriginalMouseY%, 0
+    sleep, delay
+    wiggle(20, delay/3)
+
     BlockInput, off
 }
+
 
 clickM(x, y, delay)
 {
@@ -84,4 +85,13 @@ clickM(x, y, delay)
     sleep, 100
     Click
     sleep, %delay%
+}
+
+
+wiggle(amount, delay)
+{
+    MouseMove, -%amount%, %amount%, 10, R
+    Sleep, delay
+    MouseMove, %amount%, -%amount%, 10, R
+    Sleep, delay
 }
